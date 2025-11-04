@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t mannj99/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true mannj99/react-test npm test
+
+after_success:
+  - docker build -t mannj99/multi-client ./client
+  - docker build -t mannj99/multi-nginx ./nginx
+  - docker build -t mannj99/multi-server ./server
+  - docker build -t mannj99/multi-worker ./worker
