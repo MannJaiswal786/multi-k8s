@@ -18,10 +18,10 @@ const pgClient = new Pool({
   password: keys.pgPassword,
   port: keys.pgPort,
   // only use SSL in production; fix the typo
-  ssl:
-    process.env.NODE_ENV !== 'production'
-      ? false
-      : { rejectUnauthorized: false },
+ // ssl:
+   // process.env.NODE_ENV !== 'production'
+     // ? false
+      //: { rejectUnauthorized: false },
 });
 
 pgClient.on('connect', (client) => {
